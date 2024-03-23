@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+void removeSpacesAndPunctuation(char str[]) {
+    int len = strlen(str);
+    int index = 0;
+    for (int i = 0; i < len; i++) {
+        if (!isspace(str[i]) && !ispunct(str[i])) {
+            str[index++] = tolower(str[i]);
+        }
+    }
+    str[index] = '\0';
+}
+
+int isPalindrome(char str[], int start, int end) {
+    if (start >= end) {
+        return 1;
+    }
+    if (str[start] != str[end]) {
+        return 0;
+    }
+    return isPalindrome(str, start + 1, end - 1);
+}
+
+int main() {
+    char inputStr[100];
+
+    printf("Enter a string: ");
+    fgets(inputStr, sizeof(inputStr), stdin);
+
+    removeSpacesAndPunctuation(inputStr);
+
+    if (isPalindrome(inputStr, 0, strlen(inputStr) - 1)) {
+        printf("The entered string is a palindrome.\n");
+    } else {
+        printf("The entered string is not a palindrome.\n");
+    }
+
+    return 0;
+}
