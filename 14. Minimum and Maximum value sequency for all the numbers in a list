@@ -1,0 +1,11 @@
+def min_max_sequence(numbers):
+    if not numbers:
+        return []
+
+    min_val = min(numbers)
+    max_val = max(numbers)
+    return [min_val, max_val] + min_max_sequence(numbers[1:])
+
+numbers = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
+result = min_max_sequence(numbers)
+print("Minimum and maximum value sequence:", result)
