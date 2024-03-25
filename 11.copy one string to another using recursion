@@ -1,0 +1,12 @@
+def copy_string(src, dest, index=0):
+    if index == len(src):
+        return dest
+    dest += src[index]
+    return copy_string(src, dest, index + 1)
+
+# Example usage
+source = "Hello, World!"
+destination = ""
+result = copy_string(source, destination)
+print("Source:", source)
+print("Destination:", result)
