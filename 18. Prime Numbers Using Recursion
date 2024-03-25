@@ -1,0 +1,19 @@
+def is_prime(num, divisor=2):
+    if num <= 2:
+        return num == 2
+    if num % divisor == 0:
+        return False
+    if divisor * divisor > num:
+        return True
+    return is_prime(num, divisor + 1)
+
+def generate_primes(n, current=2):
+    if current <= n:
+        if is_prime(current):
+            print(current)
+        generate_primes(n, current + 1)
+
+
+n = 50
+print(f"Prime numbers up to {n}:")
+generate_primes(n)
