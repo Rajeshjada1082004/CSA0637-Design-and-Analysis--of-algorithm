@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+#define NUM_ITEMS 6
+#define CONTAINER_CAPACITY 10
+
+int items[NUM_ITEMS] = {7, 5, 3, 2, 6, 4};
+
+void loadContainers() {
+    int containerCount = 0;
+    int remainingCapacity = CONTAINER_CAPACITY;
+    int i = 0;
+
+    while (i < NUM_ITEMS) {
+        if (items[i] <= remainingCapacity) {
+            printf("Item %d fits in container %d\n", items[i], containerCount + 1);
+            remainingCapacity -= items[i];
+            i++;
+        } else {
+            printf("Container %d is full\n", containerCount + 1);
+            containerCount++;
+            remainingCapacity = CONTAINER_CAPACITY;
+        }
+    }
+
+    if (remainingCapacity < CONTAINER_CAPACITY) {
+        containerCount++;
+    }
+
+    printf("Total number of containers required: %d\n", containerCount);
+}
+
+int main() {
+    loadContainers();
+    return 0;
+}
