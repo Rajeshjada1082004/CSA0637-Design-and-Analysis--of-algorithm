@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+#define MAX_ITEMS 5
+#define MAX_WEIGHT 10
+
+typedef struct {
+    int weight;
+    int value;
+} Item;
+
+Item items[MAX_ITEMS] = {{2, 6}, {2, 10}, {3, 12}, {5, 20}, {1, 4}};
+
+int knapsack() {
+    int weightLeft = MAX_WEIGHT;
+    int totalValue = 0;
+
+    for (int i = 0; i < MAX_ITEMS; i++) {
+        if (items[i].weight <= weightLeft) {
+            totalValue += items[i].value;
+            weightLeft -= items[i].weight;
+        }
+    }
+
+    return totalValue;
+}
+
+int main() {
+    printf("Optimal value: %d\n", knapsack());
+    return 0;
+}
