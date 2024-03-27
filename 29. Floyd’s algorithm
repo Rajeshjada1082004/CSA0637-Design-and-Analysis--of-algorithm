@@ -1,0 +1,60 @@
+#include <stdio.h>
+
+#define INF 9999
+
+
+void floyd(int n, int graph[][n]) {
+    int distance[n][n]; 
+    
+    
+        for (int j = 0; j < n; j++) {
+            distance[i][j] = graph[i][j];
+        }
+    }
+
+   
+    for (int k = 0; k < n; k++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (distance[i][k] + distance[k][j] < distance[i][j]) {
+                    distance[i][j] = distance[i][k] + distance[k][j];
+                }
+            }
+        }
+    }
+
+   
+    printf("Shortest distances between vertices:\n");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (distance[i][j] == INF) {
+                printf("INF\t");
+            } else {
+                printf("%d\t", distance[i][j]);
+            }
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int n;
+    printf("Enter the number of vertices: ");
+    scanf("%d", &n);
+
+    int graph[n][n];
+
+    printf("Enter the adjacency matrix:\n");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf("%d", &graph[i][j]);
+            if (graph[i][j] == 0 && i != j) {
+                graph[i][j] = INF;
+            }
+        }
+    }
+
+    floyd(n, graph); 
+
+    return 0;
+}
